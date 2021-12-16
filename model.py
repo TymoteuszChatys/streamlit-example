@@ -72,8 +72,8 @@ def prepare_models():
     models = []
     features = []
 
-    models.append(GaussianNB())
-    features.append(350)
+    #models.append(GaussianNB())
+    #features.append(350)
 
     models.append(LogisticRegression())
     features.append(325)
@@ -102,26 +102,10 @@ def train_models(models,features,dataset,corpus):
         X = X_pre.toarray()
         y = dataset.tag
 
-        THE_MODEL = RidgeClassifier()
-
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0, stratify=y)
-        THE_MODEL.fit(X_train, y_train)
-        y_pred = THE_MODEL.predict(X_test)
-
-        """
-        print("Accuracy")
-        print(accuracy_score(y_train, THE_MODEL.predict(X_train)))
-        print(accuracy_score(y_test, THE_MODEL.predict(X_test)))
-        print(" ")
-        print("F1 Score")
-        """
-        f1_score_train = f1_score(y_train, THE_MODEL.predict(X_train))
-        f1_score_test = f1_score(y_test, THE_MODEL.predict(X_test))
-        """
-        print(f1_score_train)
-        print(f1_score_test)
-        """
-        final_models.append(THE_MODEL)
+        model.fit(X_train, y_train)
+        
+        final_models.append(model)
         model_cvs.append(cv)
 
-    return final_models,model_cvs
+        return final_models,model_cvs
