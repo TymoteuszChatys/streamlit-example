@@ -1,8 +1,6 @@
-from collections import namedtuple
-import altair as alt
-import math
 import pandas as pd
 import streamlit as st
+import numpy as np
 
 """
 # Welcome to Streamlit!
@@ -16,6 +14,17 @@ In the meantime, below is an example of what you can do with just a few lines of
 """
 
 
+
+
+
+
+question = st.selectbox("What question do you want?", ["How tall is this?", "how wide is this?"], index=0)
+answer = st.text_area("What's the answer" , value="")
+
+if st.button("Let's go", key=None, help=None, on_click=None, args=None, kwargs=None):
+  st.text(f'Your question was {question}, your answer was {answer}')
+
+"""
 with st.echo(code_location='below'):
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
@@ -36,3 +45,4 @@ with st.echo(code_location='below'):
     st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
         .mark_circle(color='#0068c9', opacity=0.5)
         .encode(x='x:Q', y='y:Q'))
+"""
