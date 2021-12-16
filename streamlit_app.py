@@ -4,7 +4,6 @@ import numpy as np
 import model
 
 
-
 final_models,model_cvs = model.start()
 
 question = st.selectbox("What question do you want?", ["How tall is this?", "how wide is this?"], index=0)
