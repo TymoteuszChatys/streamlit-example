@@ -36,9 +36,9 @@ def predict(question,answer,final_models,model_cvs):
     print(final_results)
     print(" ")
     if any(final_results) == 1:
-        return "Not Helpful"
+        return "not helpful"
     else:
-        return "Helpful!"
+        return "helpful!"
 
 
 
