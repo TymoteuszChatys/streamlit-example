@@ -14,8 +14,6 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-
-@st.cache(suppress_st_warning=True)
 def predict(question,answer,final_models,model_cvs):
     #We don't use question in our model. 
     #Focus on the answer itself.
@@ -42,8 +40,6 @@ def predict(question,answer,final_models,model_cvs):
         return "helpful!"
 
 
-
-@st.cache(suppress_st_warning=True)
 def start():
     dataset = load_data()
     corpus = populate_corpus(dataset)
