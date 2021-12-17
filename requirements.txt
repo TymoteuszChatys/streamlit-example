@@ -4,3 +4,4 @@ streamlit
 matplotlib
 sklearn
 nltk
+pillow

@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import model
+from PIL import Image
 
 
 final_models,model_cvs,names = model.start()
@@ -24,3 +25,7 @@ if st.button("Is this answer helpful?", key=None, help=None, on_click=None, args
     st.text(f"1 - Unhelpful")
     st.text(f"0 - Helpful!")
     st.markdown("""---""")
+
+
+image = Image.open('Brazil.png')
+st.image(image, caption='Team Brazil')
