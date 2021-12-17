@@ -6,7 +6,7 @@ from PIL import Image
 
 
 final_models,model_cvs,names = model.start()
-
+tokenizer,vocab_list,cnn_model = model.load_nn()
 
 st.title(f'TEAM BRAZIL ANSWER CHECK')
 
@@ -15,7 +15,7 @@ question = st.selectbox("Question", ["Does this come with batteries?", "How wide
 answer = st.text_area("Answer" , value="")
 
 if st.button("Is this answer helpful?", key=None, help=None, on_click=None, args=None, kwargs=None):
-    df,prediction = model.predict(question,answer,final_models,model_cvs,names)
+    df,prediction = model.predict(question,answer,final_models,model_cvs,names,tokenizer,vocab_list,cnn_model)
     
     st.markdown("""---""")
     st.text(f"The answer '{answer}'")

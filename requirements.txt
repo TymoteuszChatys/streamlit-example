@@ -5,3 +5,4 @@ matplotlib
 sklearn
 nltk
 pillow
+keras

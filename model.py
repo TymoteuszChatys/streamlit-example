@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 import pickle
+import string
+from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import RidgeClassifier
@@ -15,7 +18,7 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-def predict(question,answer,final_models,model_cvs,names):
+def predict(question,answer,final_models,model_cvs,names,tokenizer,vocab_list,cnn_model):
     #We don't use question in our model. 
     #Focus on the answer itself.
     review = re.sub("[^a-zA-z]", ' ', answer)
@@ -32,6 +35,9 @@ def predict(question,answer,final_models,model_cvs,names):
         result = cv.transform(review)
         final_results.append((round(model.predict(result)[0])))
     
+    cnn_result = run_cnn(answer,vocab_list,tokenizer,cnn_model)[0][0]
+    names.append("Robinho Neural Net")
+    final_results.append(float(cnn_result))
 
     df = pd.DataFrame(list(zip(names, final_results)),
                columns =['Name', 'Prediction'])
@@ -57,3 +63,37 @@ def load_models():
     f.close()
 
     return models,cvs,names
+
+
+def load_nn():
+    tokenizer = pickle.load(open('tokenizer.pickle', 'rb'))    
+    vocab_list = pickle.load(open('cnn_vocab_list.sav', 'rb'))
+    cnn_model = pickle.load(open('CNN_model.sav', 'rb'))
+
+
+    return tokenizer,vocab_list,cnn_model
+
+def clean_ans_cnn(ans, vocab):
+	#Splits answer into list of words
+    words = ans.split()
+ 
+	#Removes punctuation from the list of words (First line makes a map from list of all punctuation to '')
+    rem_punc = str.maketrans('', '', string.punctuation)
+    words = [w.translate(rem_punc) for w in words]
+
+	#Filter out words in the answer that don't appear in our vocab list.
+    words = [w for w in words if w in vocab]
+    words = ' '.join(words)
+
+    return words
+
+
+def run_cnn(ans,vocab_list, tokenizer,cnn_model):
+    ans = [clean_ans_cnn(str(ans),vocab_list)]
+    #Sequence encode the words in the training set - I.e give each unique word/token a numeric value
+    encoded_docs = tokenizer.texts_to_sequences(ans)
+    #Pad sequences - for every answer- the encoding must be the same length so we add 0's to the end of the answers so that they are all equal in length.
+    ans = pad_sequences(encoded_docs, maxlen=393, padding='post')
+    cnn_pred = (cnn_model.predict(ans) > 0.5).astype('int32')
+
+    return cnn_pred
