@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import pickle
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import RidgeClassifier
@@ -41,11 +42,20 @@ def predict(question,answer,final_models,model_cvs):
 
 
 def start():
-    dataset = load_data()
-    corpus = populate_corpus(dataset)
-    models,features = prepare_models()
-    final_models,model_cvs = train_models(models,features,dataset,corpus)
+    #dataset = load_data()
+    #corpus = populate_corpus(dataset)
+    #models,features = prepare_models()
+    final_models,model_cvs = load_models()
     return final_models,model_cvs
+
+
+def load_models():
+    f = open("models.pkl", "rb")
+    models = pickle.load(f)
+    cvs = pickle.load(f)
+    f.close()
+
+    return models,cvs
 
 
 def load_data():
