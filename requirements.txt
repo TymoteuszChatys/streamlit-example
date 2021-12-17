@@ -4,4 +4,3 @@ streamlit
 matplotlib
 sklearn
 nltk
-pickle
