@@ -15,7 +15,7 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
 
-def predict(question,answer,final_models,model_cvs):
+def predict(question,answer,final_models,model_cvs,names):
     #We don't use question in our model. 
     #Focus on the answer itself.
     review = re.sub("[^a-zA-z]", ' ', answer)
@@ -53,9 +53,10 @@ def load_models():
     f = open("models.pkl", "rb")
     models = pickle.load(f)
     cvs = pickle.load(f)
+    names = pickle.load(f)
     f.close()
 
-    return models,cvs
+    return models,cvs,names
 
 
 def load_data():
