@@ -35,7 +35,7 @@ def predict(question,answer,final_models,model_cvs,names):
 
     df = pd.DataFrame(list(zip(names, final_results)),
                columns =['Name', 'Prediction'])
-
+    df.index = df.index + 1
 
     #####If any models say the answer is unhelpful, return unhelpful
     if any(final_results) == 1:
