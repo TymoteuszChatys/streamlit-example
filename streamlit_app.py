@@ -15,6 +15,6 @@ if st.button("Is this answer helpful?", key=None, help=None, on_click=None, args
     st.header(f'Your answer was {prediction}')
     st.table(df)
     st.text(f'Veto power.')
-    st.text(f"It only takes one of the models below to determine if your answer is unhelpful.")
+    st.text(f"Your answer will be unhelpful if any of the models decide it is unhelfpul.")
     st.text(f"1 - Unhelpful")
     st.text(f"0 - Helpful!")
