@@ -7,6 +7,9 @@ from PIL import Image
 
 final_models,model_cvs,names = model.start()
 
+st.title(f'TEAM BRAZIL ANSWER CHECK')
+
+
 question = st.selectbox("Question", ["Does this come with batteries?", "How wide is this?"], index=0)
 answer = st.text_area("Answer" , value="")
 
