@@ -7,15 +7,16 @@ from PIL import Image
 
 final_models,model_cvs,names = model.start()
 
-
-page_bg_img = '''
-<style>
-body {
-background-image: url("https://images.unsplash.com/photo-1579546928937-641f7ac9bced");
-background-size: cover;
-}
-</style>
-'''
+page_bg_img =     """
+    <style>
+    .reportview-container {
+        background: url("https://images.unsplash.com/photo-1579546928937-641f7ac9bced")
+    }
+   .sidebar .sidebar-content {
+        background: url("https://images.unsplash.com/photo-1579546928937-641f7ac9bced")
+    }
+    </style>
+"""
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
