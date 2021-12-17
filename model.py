@@ -48,8 +48,8 @@ def start():
     #dataset = load_data()
     #corpus = populate_corpus(dataset)
     #models,features = prepare_models()
-    final_models,model_cvs = load_models()
-    return final_models,model_cvs
+    final_models,model_cvs,names = load_models()
+    return final_models,model_cvs,names
 
 
 def load_models():
