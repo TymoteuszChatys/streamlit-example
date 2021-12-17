@@ -7,6 +7,18 @@ from PIL import Image
 
 final_models,model_cvs,names = model.start()
 
+
+page_bg_img = '''
+<style>
+body {
+background-image: url("https://images.unsplash.com/photo-1579546928937-641f7ac9bced?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2139&q=80");
+background-size: cover;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 st.title(f'TEAM BRAZIL ANSWER CHECK')
 
 
