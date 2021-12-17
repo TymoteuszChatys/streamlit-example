@@ -10,10 +10,10 @@ final_models,model_cvs,names = model.start()
 page_bg_img =     """
     <style>
     .reportview-container {
-        background: url("https://images.unsplash.com/photo-1523878288860-7ad281611901")
+        background: url("https://images.unsplash.com/photo-1566041510394-cf7c8fe21800")
     }
    .sidebar .sidebar-content {
-        background: url("https://images.unsplash.com/photo-1523878288860-7ad281611901")
+        background: url("https://images.unsplash.com/photo-1566041510394-cf7c8fe21800")
     }
     </style>
 """
