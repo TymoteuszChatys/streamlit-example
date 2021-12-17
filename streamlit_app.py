@@ -12,7 +12,7 @@ answer = st.text_area("What's the answer" , value="")
 if st.button("Is this answer helpful?", key=None, help=None, on_click=None, args=None, kwargs=None):
     df,prediction = model.predict(question,answer,final_models,model_cvs,names)
     
-    st.text(f'Your answer was {prediction}')
+    st.header(f'Your answer was {prediction}')
     st.table(df)
     st.text(f'Veto power.')
     st.text(f"It only takes one of the models below to determine if your answer is unhelpful.")
