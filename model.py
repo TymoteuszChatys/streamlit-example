@@ -56,7 +56,7 @@ def start():
 
 
 def load_models():
-    f = open("models.pkl", "rb")
+    f = open("Models/models.pkl", "rb")
     models = pickle.load(f)
     cvs = pickle.load(f)
     names = pickle.load(f)
@@ -66,9 +66,9 @@ def load_models():
 
 
 def load_nn():
-    tokenizer = pickle.load(open('tokenizer.pickle', 'rb'))    
-    vocab_list = pickle.load(open('cnn_vocab_list.sav', 'rb'))
-    cnn_model = pickle.load(open('CNN_model.sav', 'rb'))
+    tokenizer = pickle.load(open('Models/NN/tokenizer.pickle', 'rb'))    
+    vocab_list = pickle.load(open('Models/NN/cnn_vocab_list.sav', 'rb'))
+    cnn_model = pickle.load(open('Models/NN/CNN_model.sav', 'rb'))
 
 
     return tokenizer,vocab_list,cnn_model
