@@ -30,7 +30,7 @@ def predict(question,answer,final_models,model_cvs,names):
     
     for model,cv in zip(final_models,model_cvs):
         result = cv.transform(review)
-        final_results.append((model.predict(result)[0]))
+        final_results.append((round(model.predict(result)[0])))
     
 
     df = pd.DataFrame(list(zip(names, final_results)),
