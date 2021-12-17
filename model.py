@@ -32,13 +32,16 @@ def predict(question,answer,final_models,model_cvs,names):
         result = cv.transform(review)
         final_results.append((model.predict(result)[0]))
     
+
+    df = pd.DataFrame(list(zip(names, final_results)),
+               columns =['Name', 'Prediction'])
+
+
     #####If any models say the answer is unhelpful, return unhelpful
-    print(final_results)
-    print(" ")
     if any(final_results) == 1:
-        return "not helpful"
+        return df,"not helpful"
     else:
-        return "helpful!"
+        return df,"helpful!"
 
 
 def start():

@@ -10,5 +10,5 @@ question = st.selectbox("What question do you want?", ["How tall is this?", "how
 answer = st.text_area("What's the answer" , value="")
 
 if st.button("Is this answer helpful?", key=None, help=None, on_click=None, args=None, kwargs=None):
-  prediction = model.predict(question,answer,final_models,model_cvs,names)
+  df,prediction = model.predict(question,answer,final_models,model_cvs,names)
   st.text(f'Your answer was {prediction}')
